@@ -52,7 +52,7 @@ on p.patient_id=a.patient_id where a.doctor_name='Dr.Smith';
 --Q9
 select a.*,p.name from Appointment a join Patient p
 on p.patient_id=a.patient_id where
-(current_timestamp-p.date_of_birth)/365>60;
+(current_date-p.date_of_birth)/365>60;
 
 --Q10
 select p.name,count(*) as appt_count from 
@@ -68,7 +68,7 @@ group by patient_id order by count(*) desc limit 1 );
 select name from Patient where patient_id not in
 (select patient_id from Appointment);
 --Q13
-select name,(current_timestamp-date_of_birth)/365 as age from Patient;
+select name,(current_date-date_of_birth)/365 as age from Patient;
 --Q14
 select a.* from Appointment a where appointment_date
 between '2025-01-15' and '2025-04-15';
