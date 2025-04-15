@@ -84,18 +84,18 @@ department not in (select department from Appointment
 where patient_id = p.patient_id));
 --Q2
 select p.name as patient_name,a.doctor_name,count(*)
-as appointment_count from Patient p JOIN Appointment a 
+as appointment_count from Patient p join Appointment a 
 on p.patient_id = a.patient_id where a.doctor_name='Dr.Smith'
 group by p.name,a.doctor_name having count(*)=1;
 --Q3
-select a.doctor_name,count(DISTINCT a.patient_id) 
-as patient_count,string_AGG(DISTINCT p.name, ', ') as patient_names
+select a.doctor_name,count(distinct a.patient_id) 
+as patient_count,string_AGG(distinct p.name, ', ') as patient_names
 from Appointment a join Patient p on a.patient_id = p.patient_id
 group by a.doctor_name having count(distinct department)>1 and
 count(distinct a.patient_id) > 2;
 --Q4
-SELECT * FROM Appointment WHERE 
-appointment_date >= CURRENT_DATE - INTERVAL '7 days';
+select * from Appointment where
+appointment_date >= current_date - INTERVAL '7 days';
 --Q5
 select name from Patient where patient_id in
 (select patient_id from Appointment a 
